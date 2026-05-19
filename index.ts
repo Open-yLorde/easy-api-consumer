@@ -12,7 +12,7 @@ import { toSnakeCase } from "./src/functions/toSnakeCase.ts";
 import { ensureArray } from "./src/functions/ensureArray.ts";
 import { transformKeys } from "./src/functions/transformKeys.ts";
 
-interface IStriderConfig {
+interface IConfig {
     baseURL?: string;
 }
 
@@ -20,7 +20,7 @@ export class EasyAPIConsumer {
     api;
     noAuth = noAuth;
 
-    constructor(config: IStriderConfig = {}) {
+    constructor(config: IConfig = {}) {
         this.api = createApi({
             baseURL: config.baseURL
         });

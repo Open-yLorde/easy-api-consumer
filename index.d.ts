@@ -11,7 +11,7 @@ declare module "easy-api-consumer" {
         skipSlashRetry?: boolean;
     }
 
-    export interface IStriderConfig {
+    export interface IConfig {
         baseURL?: string;
     }
 
@@ -45,7 +45,7 @@ declare module "easy-api-consumer" {
         ): Promise<T>;
     }
 
-    export function createApi(config?: IStriderConfig): IApi;
+    export function createApi(config?: IConfig): IApi;
 
     export const noAuth: {
         auth: false;
@@ -73,11 +73,11 @@ declare module "easy-api-consumer" {
         transform: (key: string) => string
     ): unknown;
 
-    export class StriderFramework {
+    export class EasyAPIConsumer {
         api: IApi;
         noAuth: typeof noAuth;
 
-        constructor(config?: IStriderConfig);
+        constructor(config?: IConfig);
 
         request: typeof request;
 
