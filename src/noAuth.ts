@@ -1,0 +1,1 @@
+export const noAuth = { auth: false as const };
