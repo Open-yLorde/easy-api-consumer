@@ -10,9 +10,19 @@ export class ApiError extends Error {
                 : detail && typeof detail === 'object' && 'message' in detail
                     ? String((detail as { message?: unknown }).message)
                     : `Request failed with status ${status}`;
-        super(message);
+        super(message, {
+            cause: message
+        });
         this.name = 'ApiError';
         Object.setPrototypeOf(this, ApiError.prototype);
+    }
+
+    get isNotFound(): boolean {
+        return this.status === 404;
+    }
+
+    get isInternalServerError(): boolean {
+        return this.status === 500;
     }
 
     get isUnauthorized(): boolean {

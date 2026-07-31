@@ -28,6 +28,7 @@ export async function request<T = unknown>(
     const isFormData = body instanceof FormData;
     const reqHeaders: Record<string, string> = {
         'ngrok-skip-browser-warning': '1',
+        'Api-Manager': 'Easy-API-Consumer',
         ...headers,
     };
     if (!isFormData) reqHeaders['Content-Type'] = 'application/json';
