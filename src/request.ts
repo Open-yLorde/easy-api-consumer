@@ -5,6 +5,7 @@ import { getAuthToken } from "./token/getAuthToken.ts";
 import { AUTH_EVENTS } from "./constants.ts";
 import { ApiError } from "./types/api.ts";
 import { getDeviceType } from "./utils/getDeviceType.ts";
+import { getDeviceIpAddress } from "./utils/getDeviceIpAddress.ts";
 
 export async function request<T = unknown>(
     method: string,
@@ -25,16 +26,24 @@ export async function request<T = unknown>(
 
     // const url = path.startsWith('http') ? path : `${API_BASE_URL}${path}`;
     const url: string = path;
-    const deviceType = getDeviceType();
 
     const isFormData = body instanceof FormData;
     const reqHeaders: Record<string, string> = {
         'ngrok-skip-browser-warning': '1',
         'api-manager': 'Easy-API-Consumer',
-        'device-type': deviceType,
         ...headers,
     };
     if (!isFormData) reqHeaders['Content-Type'] = 'application/json';
+
+    if (options.includesDeviceIpAddress) {
+        const deviceIpAddress = await getDeviceIpAddress();
+        reqHeaders['device-ip-address'] = deviceIpAddress;
+    };
+
+    if (options.includesDeviceType) {
+        const deviceType = getDeviceType();
+        reqHeaders['device-type'] = deviceType;
+    };
 
     if (auth !== false) {
         const token = getAuthToken();

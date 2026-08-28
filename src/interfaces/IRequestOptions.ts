@@ -8,4 +8,6 @@ export interface IRequestOptions {
     camelCase?: boolean;
     bodyAsIs?: boolean;
     skipSlashRetry?: boolean;
+    includesDeviceType?: boolean;
+    includesDeviceIpAddress?: boolean;
 }
