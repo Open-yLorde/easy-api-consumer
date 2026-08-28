@@ -11,6 +11,8 @@ declare module "easy-api-consumer" {
         camelCase?: boolean;
         bodyAsIs?: boolean;
         skipSlashRetry?: boolean;
+        includesDeviceType?: boolean;
+        includesDeviceIpAddress?: boolean;
     }
 
     export interface IConfig {
