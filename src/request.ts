@@ -4,6 +4,7 @@ import { clearAuthToken } from "./token/clearAuthToken.ts";
 import { getAuthToken } from "./token/getAuthToken.ts";
 import { AUTH_EVENTS } from "./constants.ts";
 import { ApiError } from "./types/api.ts";
+import { getDeviceType } from "./utils/getDeviceType.ts";
 
 export async function request<T = unknown>(
     method: string,
@@ -24,11 +25,13 @@ export async function request<T = unknown>(
 
     // const url = path.startsWith('http') ? path : `${API_BASE_URL}${path}`;
     const url: string = path;
+    const deviceType = getDeviceType();
 
     const isFormData = body instanceof FormData;
     const reqHeaders: Record<string, string> = {
         'ngrok-skip-browser-warning': '1',
-        'Api-Manager': 'Easy-API-Consumer',
+        'api-manager': 'Easy-API-Consumer',
+        'device-type': deviceType,
         ...headers,
     };
     if (!isFormData) reqHeaders['Content-Type'] = 'application/json';

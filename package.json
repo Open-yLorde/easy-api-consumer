@@ -1,13 +1,20 @@
 {
   "name": "easy-api-consumer",
-  "version": "1.1.4",
-  "description": "",
+  "version": "1.2.0",
+  "description": "A modern Node.js library to facilitate HTTP requests, authentication, and API creation in a simple, organized, and reusable way.",
   "main": "index.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "publish": "npm version patch && npm publish"
   },
-  "keywords": [],
+  "keywords": [
+    "nodejs",
+    "http",
+    "request",
+    "api",
+    "consumer",
+    "authentication"
+  ],
   "author": {
     "name": "yLorde",
     "email": "contato@ylorde.com.br",

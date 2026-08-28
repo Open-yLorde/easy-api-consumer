@@ -73,6 +73,9 @@ declare module "easy-api-consumer" {
         transform: (key: string) => string
     ): unknown;
 
+    type DeviceType = "android" | "ios" | "windows" | "macos" | "linux" | "unknown";
+    export function getDeviceType(): DeviceType;
+
     export class EasyAPIConsumer {
         api: IApi;
         noAuth: typeof noAuth;
@@ -93,6 +96,10 @@ declare module "easy-api-consumer" {
             toSnakeCase: typeof toSnakeCase;
             ensureArray: typeof ensureArray;
             transformKeys: typeof transformKeys;
+        };
+
+        utils: {
+            getDeviceType: typeof getDeviceType,
         };
     }
 }

@@ -12,6 +12,8 @@ import { toSnakeCase } from "./src/functions/toSnakeCase.ts";
 import { ensureArray } from "./src/functions/ensureArray.ts";
 import { transformKeys } from "./src/functions/transformKeys.ts";
 
+import { getDeviceType } from "./src/utils/getDeviceType.ts";
+
 interface IConfig {
     baseURL?: string;
 }
@@ -40,5 +42,9 @@ export class EasyAPIConsumer {
         toSnakeCase,
         ensureArray,
         transformKeys,
+    };
+
+    utils = {
+        getDeviceType,
     };
 }
