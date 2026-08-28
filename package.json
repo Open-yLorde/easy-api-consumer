@@ -1,6 +1,6 @@
 {
   "name": "easy-api-consumer",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "A modern Node.js library to facilitate HTTP requests, authentication, and API creation in a simple, organized, and reusable way.",
   "main": "index.ts",
   "scripts": {
