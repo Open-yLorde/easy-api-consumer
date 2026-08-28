@@ -1,4 +1,4 @@
-type DeviceType = "android" | "ios" | "windows" | "macos" | "linux" | "unknown";
+import { DeviceType } from "../types/deviceType";
 
 export function getDeviceType(): DeviceType {
     const userAgent = navigator.userAgent.toLowerCase();

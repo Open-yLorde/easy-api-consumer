@@ -1,0 +1,1 @@
+export type DeviceType = "android" | "ios" | "windows" | "macos" | "linux" | "unknown";

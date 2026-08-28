@@ -13,6 +13,7 @@ import { ensureArray } from "./src/functions/ensureArray.ts";
 import { transformKeys } from "./src/functions/transformKeys.ts";
 
 import { getDeviceType } from "./src/utils/getDeviceType.ts";
+import { getDeviceIpAddress } from "./src/utils/getDeviceIpAddress.ts";
 
 interface IConfig {
     baseURL?: string;
@@ -46,5 +47,6 @@ export class EasyAPIConsumer {
 
     utils = {
         getDeviceType,
+        getDeviceIpAddress,
     };
 }

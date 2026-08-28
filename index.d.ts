@@ -1,3 +1,5 @@
+import { DeviceType } from "./src/types/deviceType";
+
 declare module "easy-api-consumer" {
     export interface IRequestOptions {
         body?: unknown;
@@ -73,8 +75,8 @@ declare module "easy-api-consumer" {
         transform: (key: string) => string
     ): unknown;
 
-    type DeviceType = "android" | "ios" | "windows" | "macos" | "linux" | "unknown";
     export function getDeviceType(): DeviceType;
+    export function getDeviceIpAddress(): Promise<string>;
 
     export class EasyAPIConsumer {
         api: IApi;
@@ -100,6 +102,7 @@ declare module "easy-api-consumer" {
 
         utils: {
             getDeviceType: typeof getDeviceType,
+            getDeviceIpAddress: typeof getDeviceIpAddress,
         };
     }
 }
