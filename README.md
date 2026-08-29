@@ -1,27 +1,28 @@
-# Easy API Consumer
-
-Uma biblioteca Node.js moderna para facilitar requisições HTTP, autenticação e criação de APIs de forma simples, organizada e reutilizável.
+# Easy API Consumer - A Node.js library for simplified HTTP requests, authentication, and API communication.
 
 > Repositório oficial: https://github.com/open-ylorde/easy-api-consumer
 
 ---
 
-## ✨ Recursos
+## Resources
 
-- 📦 Estrutura modular
-- 🌐 Sistema de requests simplificado
-- 🔐 Suporte a autenticação via token
-- 🧩 Fácil integração com outros projetos
-- ⚡ Compatível com ESModules (`import/export`)
-- 🛠 Tipagem via `index.d.ts`
+- HTTP Client — Simplified interface for making GET, POST, PUT, PATCH and DELETE requests.
+- Authentication — Built-in authentication token management with helpers to get, set and clear tokens.
+- Authenticated Requests — Easily enable or disable authentication on individual requests.
+- Device Information — Utilities for detecting the device type and retrieving the client's IP address.
+- Flexible Configuration — Configure a base API URL and customize request behavior according to your application's needs.
+- Reusable API Layer — Organize and reuse API endpoints without repeating request configuration.
+- TypeScript Support — Fully typed API interface for a better development experience.
+- Lightweight & Simple — Designed to provide the features you need without unnecessary complexity.
+- Centralized API Management — Keep authentication, API configuration and request handling in one place.
 
-## 📥 Instalação
+## Installation
 
 ```bash
-npm install https://github.com/open-ylorde/easy-api-consumer
+npm install easy-api-consumer
 ```
 
-## 📦 Example Usage
+## Example Usage
 
 ### 1. Define your request interfaces
 
@@ -178,10 +179,10 @@ export type DeviceType = "android" | "ios" | "windows" | "macos" | "linux" | "un
 ```
 ---
 
-## 📄 Licença
+## 📄 License
 
-MIT
+This project is licensed under the GPL-3.0 License.
 
-## 👑 Autor
+## 👑 Author
 
-Desenvolvido por **yLorde**
+Copyright (c) 2026 Davi de Sousa Amorim

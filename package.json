@@ -20,7 +20,7 @@
     "email": "contato@ylorde.com.br",
     "url": "https://www.ylorde.com.br"
   },
-  "license": "MIT",
+  "license": "GPL-3.0-only",
   "type": "module",
   "types": "index.d.ts"
 }
