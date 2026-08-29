@@ -14,19 +14,14 @@ import { transformKeys } from "./src/functions/transformKeys.ts";
 
 import { getDeviceType } from "./src/utils/getDeviceType.ts";
 import { getDeviceIpAddress } from "./src/utils/getDeviceIpAddress.ts";
-
-interface IConfig {
-    baseURL?: string;
-}
+import { IApiConfig } from "./src/interfaces/IApiConfig.ts";
 
 export class EasyAPIConsumer {
     api;
     noAuth = noAuth;
 
-    constructor(config: IConfig = {}) {
-        this.api = createApi({
-            baseURL: config.baseURL
-        });
+    constructor(config: IApiConfig) {
+        this.api = createApi(config);
     };
 
     request = request;

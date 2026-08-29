@@ -24,7 +24,6 @@ export async function request<T = unknown>(
         skipSlashRetry = false,
     } = options;
 
-    // const url = path.startsWith('http') ? path : `${API_BASE_URL}${path}`;
     const url: string = path;
 
     const isFormData = body instanceof FormData;
@@ -70,7 +69,7 @@ export async function request<T = unknown>(
     const doFetch = (href: string): Promise<Response> =>
         fetch(href, {
             method,
-            credentials: 'include', /* envia cookie de sessão; dupla via com Bearer acima */
+            credentials: 'include', /* Send session cookie; dual approach with Bearer (as above) */
             headers: reqHeaders,
             body: isFormData
                 ? (body as FormData)
@@ -85,10 +84,8 @@ export async function request<T = unknown>(
         (response.status === 404 || response.status === 405) &&
         path.startsWith('/')
     ) {
-        const altPath = path.endsWith('/') ? path.slice(0, -1) : `${path}/`;
-        // const altUrl = path.startsWith('http') ? path : `${API_BASE_URL}${altPath}`;
         response = await doFetch(path);
-    }
+    };
 
     if (timeoutId != null) clearTimeout(timeoutId);
 
@@ -97,7 +94,7 @@ export async function request<T = unknown>(
         window.dispatchEvent(
             new CustomEvent(AUTH_EVENTS.UNAUTHORIZED, { detail: response })
         );
-    }
+    };
 
     let detail: string | Record<string, unknown> | null = null;
     const contentType = response.headers.get('content-type');
@@ -119,14 +116,15 @@ export async function request<T = unknown>(
             }
         } else {
             detail = await response.text();
-        }
+        };
 
         throw new ApiError(response.status, detail, response);
-    }
+    };
 
     if (contentType?.includes('application/json')) {
         const data = await (response.json() as Promise<unknown>);
         return toSnakeCase(data) as T;
-    }
+    };
+
     return response.text() as unknown as T;
 }

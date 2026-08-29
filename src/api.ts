@@ -1,10 +1,7 @@
 import { request } from "./request";
+import { IApiConfig } from "./interfaces/IApiConfig";
 
-interface IApiConfig {
-    baseURL?: string;
-}
-
-export const createApi = (config: IApiConfig = {}) => ({
+export const createApi = (config: IApiConfig) => ({
     get: <T = unknown>(path: string, options?: any) =>
         request<T>("GET", config.baseURL + path, options),
 

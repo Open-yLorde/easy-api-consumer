@@ -179,10 +179,18 @@ export type DeviceType = "android" | "ios" | "windows" | "macos" | "linux" | "un
 ```
 ---
 
-## 📄 License
+## License
 
 This project is licensed under the GPL-3.0 License.
 
-## 👑 Author
+## Credits
 
-Copyright (c) 2026 Davi de Sousa Amorim
+The implementation of `request.ts` was based on code originally created by [SorPuti](https://github.com/SorPuti).
+
+The code was adapted for this project.
+
+> The original code did not specify a usage license. This credit is provided as attribution to the original author.
+
+## Author
+
+Copyright (c) 2026 Davi de Sousa
