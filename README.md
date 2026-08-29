@@ -21,26 +21,138 @@ Uma biblioteca Node.js moderna para facilitar requisições HTTP, autenticação
 npm install https://github.com/open-ylorde/easy-api-consumer
 ```
 
-## 🚀 Uso Básico
+## 📦 Example Usage
+
+### 1. Define your request interfaces
+
+Create interfaces for the authentication payloads:
 
 ```ts
+// @/interfaces/ILogin.ts
+
+export interface ILoginBody {
+  email: string;
+  password: string;
+}
+
+export interface IRegisterBody {
+  username: string;
+  email: string;
+  password: string;
+}
+```
+
+---
+
+### 2. Configure the API client
+
+Initialize `EasyAPIConsumer` with your API's base URL and expose the utilities you need throughout your application:
+
+```ts
+// @/lib/api.ts
+
 import { EasyAPIConsumer } from "easy-api-consumer";
 
-const easyApi = new EasyAPIConsumer({ baseURL: "https://api.site.com" })
+const easyApi = new EasyAPIConsumer({
+  baseURL: "https://api.site.com",
+});
 
-const { api, noAuth, token } = easyApi;
+const { api, noAuth, utils, token } = easyApi;
+
 const { getDeviceType, getDeviceIpAddress } = utils;
-const { getAuthToken, setAuthToken, clearAuthToken } = token;
 
-export { api, noAuth, getAuthToken, setAuthToken, clearAuthToken, getDeviceType, getDeviceIpAddress };
+const {
+  getAuthToken,
+  setAuthToken,
+  clearAuthToken,
+} = token;
 
-export const authApi = {
-  login: (email: string, password: string) => api.post('/auth/login', { email, password }, noAuth),
-  register: (data: Record<string, unknown>) => api.post('/auth/register', data, noAuth),
-  me: () => api.get('/auth/me', { includesDeviceIpAddress: true }),
-  logout: () => api.post('/auth/logout', { includesDeviceIpAddress: true } ),
+export {
+  api,
+  noAuth,
+  getAuthToken,
+  setAuthToken,
+  clearAuthToken,
+  getDeviceType,
+  getDeviceIpAddress,
 };
 ```
+
+> `EasyAPIConsumer` handles the API configuration, authentication token management, and device information utilities for you.
+
+---
+
+### 3. Create your API endpoints
+
+You can organize your endpoints by feature. For example, authentication-related requests can be grouped into an `authApi` object:
+
+```ts
+// @/lib/endpoints/auth.ts
+
+import { api } from "../api";
+import {
+  ILoginBody,
+  IRegisterBody,
+} from "@/interfaces/ILogin";
+
+export const authApi = {
+  login: (body: ILoginBody) =>
+    api.post(
+      "/auth/login",
+      body,
+      {
+        includesDeviceIpAddress: true,
+        includesDeviceType: true,
+        auth: false,
+      }
+    ),
+
+  register: (body: IRegisterBody) =>
+    api.post(
+      "/auth/register",
+      body,
+      {
+        auth: false,
+      }
+    ),
+
+  me: () =>
+    api.get(
+      "/auth/me",
+      {
+        includesDeviceIpAddress: true,
+      }
+    ),
+
+  logout: () =>
+    api.post(
+      "/auth/logout",
+      {
+        includesDeviceIpAddress: true,
+      }
+    ),
+};
+```
+
+### 4. Using the endpoints
+
+Once the endpoints are defined, requests can be made directly from your application:
+
+```ts
+import { authApi } from "@/lib/endpoints/auth";
+
+const login = async () => {
+  const response = await authApi.login({
+    email: "user@example.com",
+    password: "password",
+  });
+
+  console.log(response);
+};
+```
+
+This approach keeps the API layer organized and makes it easier to maintain and scale as your application grows.
+
 ---
 ### `includesDeviceIpAddress?: boolean`
 
